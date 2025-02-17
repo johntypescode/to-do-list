@@ -1,3 +1,13 @@
+:root {
+
+    --default-font: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, 'Noto Sans', 'Liberation Sans', Arial, sans-serif;
+
+}
+
+html {
+    font: normal 1rem/1.5rem var(--default-font);
+}
+
 .completed {
     text-decoration: line-through;
 }
