@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+*::before, *::after {
+    box-sizing: border-box;
+}
+
+html, html:focus-within, body {
+    scroll-behavior: smooth;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    line-height: 1.5;
+}
+
+img, picture, audio, video, canvas, svg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    vertical-align: middle;
+    max-width: 100%;
+    height: auto;
+}
+
+img {
+    border-style: none;
+}
+
+input, select, textarea, button {
+    font: inherit;
+}
+
+input[type="button"], input[type="submit"], input[type="reset"],
+input[type="checkbox"], input[type="radio"], input[type="range"],
+input[type="file"], input[type="image"], input[type="color"] {
+    cursor: pointer;
+}
+
+input[type="range"]:focus {
+    cursor: grabbing;
+}
+
+button, select {
+    text-transform: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+caption, th, td {
+    text-align: left;
+    font-weight: normal;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+abbr {
+    display: inline;
+    text-decoration: none;
+    border-bottom: 1px dotted;
+    cursor: help;
+}
+
+code, pre, samp, kbd {
+    font: 1rem monospace, monospace;
+}
+
+[hidden] {
+    display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        transition: none!important;
+        animation: 0.01ms linear 0.01ms!important;
+        scroll-behavior: auto!important;
+    }
+
+    html:focus-within {
+        scroll-behavior: auto!important;
+    }
+}
