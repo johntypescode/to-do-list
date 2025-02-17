@@ -23,6 +23,7 @@ window.onload = () => {
      * Generate an HTML element in the DOM.
      * ====================================
      */
+    
     const $html = (tag_type, parent_of, attrs = {}) => {
         const new_html_element = document.createElement(tag_type);
 
@@ -40,7 +41,19 @@ window.onload = () => {
         return parent_of.appendChild(new_html_element);
     };
 
-    // Initial test for `$html()`
-    $html('p', $('body'), { innerText: 'You only see me because of JavaScript! :0'});
+    /**
+     * Generate the HTML mark-up structure for new task list items. 
+     * This serves as a sort of template.
+     * ============================================================
+     */
+
+    const generate_list_item = (task_descr_value) => {
+        const list_item_container = $html('li', task_list_container);
+        const mark_item_off = $html('input', list_item_container, { type: 'checkbox' });
+        const mark_as_priority = $html('span', list_item_container, { class: 'prioritize', innerHTML: '&star;' });
+        const task_descr_container = $html('div', list_item_container, { class: 'task-descr'});
+        const task_descr_label = $html('span', task_descr_container, { innerText: task_descr_value });
+    };
+
 
 };
