@@ -48,6 +48,10 @@ window.onload = () => {
      */
 
     const generate_list_item = (task_descr_value) => {
+
+        /////////////////////////////////////////////////
+        // Create the new list item mark-up structure. //
+        /////////////////////////////////////////////////
         const list_item_container = $html('li', task_list_container);
         const mark_item_off = $html('input', list_item_container, { type: 'checkbox' });
         const mark_as_priority = $html('span', list_item_container, { class: 'prioritize', innerHTML: '&star;' });
@@ -73,11 +77,11 @@ window.onload = () => {
             list_item_container.classList.toggle('priority');
             if(list_item_container.classList.contains('priority')) {
                 mark_as_priority.classList.add('yellow');
-                mark_as_priority.innerHTML = '&starf;';
+                mark_as_priority.innerHTML = '&starf;'; // Prioritized.
             }
             else {
                 mark_as_priority.classList.remove('yellow');
-                mark_as_priority.innerHTML = '&star;';
+                mark_as_priority.innerHTML = '&star;'; // Not prioritized.
             }
         });
 
@@ -140,10 +144,15 @@ window.onload = () => {
         });
     };
 
-    add_task_bttn.addEventListener('click', ($event) => {
+    /**
+     * Append a new task to the list.
+     * ==============================
+     */
+    const add_task_to_list = ($event) => {
         $event.preventDefault();
         $event.stopPropagation();
 
+        // Grab the value of the new list item.
         const task_value = new_task_input.value;
 
         // Task should contain at least 4 characters to avoid cluttering up the DOM with otherwise 
@@ -159,5 +168,7 @@ window.onload = () => {
             alert('Error: task description should contain at least four (4) characters at minimum; try again.');
             return false;
         }
-    });
+    };
+
+    add_task_bttn.addEventListener('click', add_task_to_list);
 };
