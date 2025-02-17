@@ -80,6 +80,64 @@ window.onload = () => {
                 mark_as_priority.innerHTML = '&star;';
             }
         });
+
+        //////////////////////////////////////
+        // Edit task list item description. //
+        //////////////////////////////////////
+        edit_bttn.addEventListener('click', ($click_event) => {
+            $click_event.preventDefault();
+            $click_event.stopPropagation();
+
+            // Temporarily hide the existing description label until the a new value is submitted.
+            task_descr_label.style.display = 'none';
+            
+            // Create an editor form.
+            const descr_editor = $html('textarea', task_descr_container, { innerText: task_descr_label.innerText });
+            const save_editor = $html('button', task_descr_container, { innerHTML: 'Save...' });
+
+            // Temporarily disable further modifications until a new value is processed.
+            mark_item_off.disabled = true;
+            edit_bttn.disabled = true;
+            delete_bttn.disabled = true;
+
+            // Automatically focus in on the editor.
+            descr_editor.focus();
+            descr_editor.setSelectionRange(descr_editor.value.length, descr_editor.value.length);
+
+            save_editor.addEventListener('click', ($event) => {
+                $event.preventDefault();
+                $event.stopPropagation();
+
+                const new_value = descr_editor.value.trim();
+                if(new_value.length > 0 && new_value.length >= 4) {
+                    task_descr_label.textContent = new_value;
+                    task_descr_label.style.display = 'block';
+
+                    // Hide the editor form.
+                    task_descr_container.removeChild(descr_editor);
+                    task_descr_container.removeChild(save_editor);
+
+                    // Re-enable further modifications.
+                    mark_item_off.disabled = false;
+                    edit_bttn.disabled = false;
+                    delete_bttn.disabled = false;
+                }
+                else {
+                    alert('Error: task description should contain at least four (4) characters at minimum; try again.');
+                    descr_editor.focus();
+                    return false;                    
+                }
+            });
+        });
+
+        delete_bttn.addEventListener('click', ($event) => {
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            if(confirm('Warning: you are about to permanently delete this task from the list. This action cannot be undone. Are you sure you want to do this?')) {
+                task_list_container.removeChild(list_item_container);
+            }
+        });
     };
 
     add_task_bttn.addEventListener('click', ($event) => {
@@ -92,6 +150,9 @@ window.onload = () => {
         // useless elements.
         if(task_value.length >= 4) {
             generate_list_item(task_value);
+
+            new_task_input.value = '';
+            new_task_input.focus();
         }
         // Anything less than 4 will trigger an error.
         else {
