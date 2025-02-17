@@ -23,7 +23,7 @@ window.onload = () => {
      * Generate an HTML element in the DOM.
      * ====================================
      */
-    
+
     const $html = (tag_type, parent_of, attrs = {}) => {
         const new_html_element = document.createElement(tag_type);
 
@@ -55,5 +55,21 @@ window.onload = () => {
         const task_descr_label = $html('span', task_descr_container, { innerText: task_descr_value });
     };
 
+    add_task_bttn.addEventListener('click', ($event) => {
+        $event.preventDefault();
+        $event.stopPropagation();
 
+        const task_value = new_task_input.value;
+
+        // Task should contain at least 4 characters to avoid cluttering up the DOM with otherwise 
+        // useless elements.
+        if(task_value.length >= 4) {
+            generate_list_item(task_value);
+        }
+        // Anything less than 4 will trigger an error.
+        else {
+            alert('Error: task description should contain at least four (4) characters at minimum; try again.');
+            return false;
+        }
+    });
 };
