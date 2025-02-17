@@ -65,6 +65,21 @@ window.onload = () => {
 
             task_descr_label.classList.toggle('completed');
         });
+
+        ///////////////////////////////////
+        // Mark a task item as priority. //
+        ///////////////////////////////////
+        mark_as_priority.addEventListener('click', () => {
+            list_item_container.classList.toggle('priority');
+            if(list_item_container.classList.contains('priority')) {
+                mark_as_priority.classList.add('yellow');
+                mark_as_priority.innerHTML = '&starf;';
+            }
+            else {
+                mark_as_priority.classList.remove('yellow');
+                mark_as_priority.innerHTML = '&star;';
+            }
+        });
     };
 
     add_task_bttn.addEventListener('click', ($event) => {
