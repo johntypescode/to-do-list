@@ -53,6 +53,8 @@ window.onload = () => {
         const mark_as_priority = $html('span', list_item_container, { class: 'prioritize', innerHTML: '&star;' });
         const task_descr_container = $html('div', list_item_container, { class: 'task-descr'});
         const task_descr_label = $html('span', task_descr_container, { innerText: task_descr_value });
+        const edit_bttn = $html('button', list_item_container, { class: 'edit-item', innerHTML: 'Edit' });
+        const delete_bttn = $html('button', list_item_container, { class: 'delete-item', innerHTML: 'Delete' });
     };
 
     add_task_bttn.addEventListener('click', ($event) => {
