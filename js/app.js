@@ -55,6 +55,16 @@ window.onload = () => {
         const task_descr_label = $html('span', task_descr_container, { innerText: task_descr_value });
         const edit_bttn = $html('button', list_item_container, { class: 'edit-item', innerHTML: 'Edit' });
         const delete_bttn = $html('button', list_item_container, { class: 'delete-item', innerHTML: 'Delete' });
+
+        ///////////////////////////////////
+        // Mark an item off of the list. //
+        ///////////////////////////////////
+        mark_item_off.addEventListener('change', ($change_event) => {
+            $change_event.preventDefault();
+            $change_event.stopPropagation();
+
+            task_descr_label.classList.toggle('completed');
+        });
     };
 
     add_task_bttn.addEventListener('click', ($event) => {
